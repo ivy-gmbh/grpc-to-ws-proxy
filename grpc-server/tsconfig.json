@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "ES2022",
+    "target": "ES2022",
+    "moduleResolution": "node",
+    "rootDirs": ["src", "gen"],
+    "outDir": "dist",
+    "baseUrl": ".",
+    "declaration": true,
+    "sourceMap": true,
+    "composite": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "preserveConstEnums": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src/**/*", "gen/**/*"],
+  "references": []
+}

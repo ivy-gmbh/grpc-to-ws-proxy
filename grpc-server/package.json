@@ -1,0 +1,44 @@
+{
+  "name": "grpc-server",
+  "version": "0.0.1",
+  "description": "Test for restreaming a ws stream as a grpc stream",
+  "type": "module",
+  "main": "dist/index.js",
+  "private": true,
+  "scripts": {
+    "clean": "run-p clean:*",
+    "clean:dist": "rm -rf dist",
+    "clean:gen": "rm -rf gen",
+    "pregen": "npm run clean && mkdir -p gen/grpc",
+    "gen": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=outputServices=nice-grpc,outputServices=generic-definitions,useExactTypes=false,esModuleInterop=true,env=node,stringEnums=true --ts_proto_out=./gen/grpc --descriptor_set_out=./gen/grpc/protoset.bin --include_imports --proto_path=../proto ../proto/rand/v1/rand.proto",
+    "prebuild": "run-s clean gen",
+    "build": "tsc",
+    "lint": "eslint --max-warnings 0 src",
+    "lint:fix": "npm run lint -- --fix",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/src/index.js"
+  },
+  "dependencies": {
+    "abort-controller-x": "~0.4.3",
+    "dotenv": "~16.0.3",
+    "nice-grpc": "~2.1.7",
+    "nice-grpc-server-middleware-terminator": "~2.0.9",
+    "nice-grpc-server-reflection": "~2.0.9",
+    "ws": "~8.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "~18.18.0",
+    "@types/ws": "~8.5.10",
+    "@typescript-eslint/eslint-plugin": "~5.55.0",
+    "@typescript-eslint/parser": "~5.55.0",
+    "eslint": "~8.36.0",
+    "eslint-config-prettier": "~8.7.0",
+    "eslint-plugin-import": "~2.27.5",
+    "eslint-plugin-prettier": "~4.2.1",
+    "npm-run-all": "~4.1.5",
+    "prettier": "~2.8.4",
+    "ts-proto": "~1.165.0",
+    "tsx": "~4.6.1",
+    "typescript": "~4.9.5"
+  }
+}

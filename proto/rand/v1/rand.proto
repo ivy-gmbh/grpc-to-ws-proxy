@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package rand.v1;
+
+message RandomNumberRequest {
+  optional int32 min = 1;
+  optional int32 max = 2;
+}
+
+message RandomNumberResponse {
+  int32 timestamp = 1;
+  int32 value = 2;
+}
+
+service RandomNumberService {
+  rpc RandomNumber(RandomNumberRequest) returns (RandomNumberResponse);
+
+  rpc RandomNumberStream(RandomNumberRequest) returns (stream RandomNumberResponse);
+}
